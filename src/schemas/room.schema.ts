@@ -15,6 +15,9 @@ export class Room {
 
   @Prop()
   shoppingLists: string[];
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  admin: User; // Admin of the room
 }
 
 export const RoomSchema = SchemaFactory.createForClass(Room);
