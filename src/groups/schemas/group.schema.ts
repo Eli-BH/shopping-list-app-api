@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { User } from './user.schema';
+import { User } from '../../users/schemas/user.schema';
 import * as mongoose from 'mongoose';
 
-export type RoomDocument = HydratedDocument<Room>;
+export type GroupDocument = HydratedDocument<Group>;
 
 @Schema()
-export class Room {
+export class Group {
   @Prop()
   name: string;
 
@@ -17,7 +17,7 @@ export class Room {
   shoppingLists: string[];
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  admin: User; // Admin of the room
+  admin: User; // Admin of the Group
 }
 
-export const RoomSchema = SchemaFactory.createForClass(Room);
+export const GroupSchema = SchemaFactory.createForClass(Group);

@@ -1,11 +1,23 @@
+import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
+import { Group } from '../groups/schemas/group.schema';
+import { User } from 'src/users/schemas/user.schema';
 
 @Injectable()
 export class GroupsService {
-  create(createGroupDto: CreateGroupDto) {
-    return 'This action adds a new group';
+  constructor(@InjectModel(Group.name) private groupModel: Model<Group>) {}
+
+  async create(createGroupDto: CreateGroupDto, userId: User) {
+    const createdGroup = new this.groupModel({
+      ...createGroupDto,
+      admin: userId,
+      users: [userId],
+    });
+
+    return createdGroup.save(); // Save to the database
   }
 
   findAll() {
