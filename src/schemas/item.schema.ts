@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { User } from './user.schema';
+
 import * as mongoose from 'mongoose';
 
 export type ShoppingListDocument = HydratedDocument<Item>;
@@ -17,4 +19,12 @@ export class Item {
 
   @Prop()
   image: string; // URL to the item's image
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  addedBy: User; // User who added the item
+
+  @Prop()
+  possibleIsleDescription: string; // Description of the isle where the item can possibly be found
 }
+
+export const ItemSchema = SchemaFactory.createForClass(Item);
