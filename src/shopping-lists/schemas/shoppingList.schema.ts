@@ -13,3 +13,5 @@ export class ShoppingList {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Item' })
   items: Item[]; // Array of item ids
 }
+
+export const ShoppingListSchema = SchemaFactory.createForClass(ShoppingList);
