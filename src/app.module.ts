@@ -5,6 +5,7 @@ import { GroupsModule } from './groups/groups.module';
 import { UsersModule } from './users/users.module';
 import { ItemsModule } from './items/items.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ShoppingListsModule } from './shopping-lists/shopping-lists.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     UsersModule,
     ItemsModule,
     MongooseModule.forRoot('mongodb://localhost/nest'),
+    ShoppingListsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

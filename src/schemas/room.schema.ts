@@ -14,7 +14,7 @@ export class Room {
   users: User[]; // Array of user ids
 
   @Prop()
-  messages: string[]; // Array of message ids
+  shoppingLists: string[];
 }
 
 export const RoomSchema = SchemaFactory.createForClass(Room);
